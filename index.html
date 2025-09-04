@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uraan Studio Agency — Crafting Digital Masterpieces</title>
+  <meta name="description" content="Uraan Studio Agency: Premium branding, websites, content creation, and digital marketing that shine like gold." />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Fonts (luxury pairing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Brand Palette */
+      --gold:#D4AF37;             /* Primary Accent */
+      --black:#000000;            /* Primary BG */
+      --charcoal:#1A1A1A;         /* Section BG 1 */
+      --dark-brown:#2B1E17;       /* Section BG 2 */
+      --white:#FFFFFF;            /* Contrast Text */
+      --muted:#C0C0C0;            /* Neutral */
+
+      /* Effects */
+      --glass: rgba(255,255,255,0.06);
+      --glass-stroke: rgba(212,175,55,0.25);
+      --maxw: 1200px;
+      --radius: 24px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --blur: blur(12px);
+      --grad-gold: linear-gradient(135deg, #C29D2D, #D4AF37 35%, #E5C55C, #C29D2D);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--white);
+      background: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Utility */
+    .container { width: 90%; max-width: var(--maxw); margin: 0 auto; }
+    .grid { display: grid; gap: 24px; }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius: 999px; font-weight:600; border: 1px solid transparent; text-decoration:none; }
+    .btn-primary{ background: var(--grad-gold); color: #151515; box-shadow: 0 6px 18px rgba(212,175,55,.25); }
+    .btn-ghost{ border-color: var(--gold); color: var(--gold); background: transparent; }
+    .btn-ghost:hover{ background: rgba(212,175,55,.1); }
+
+    .section { padding: 96px 0; position: relative; }
+    .section.dark { background: radial-gradient(1200px 600px at 50% -10%, rgba(212,175,55,.08), transparent 60%), var(--charcoal); }
+    .section.brown { background: linear-gradient(180deg, var(--dark-brown), #15100B 60%); }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; letter-spacing: .2px; }
+    h1 { font-size: clamp(40px, 6vw, 72px); }
+    h2 { font-size: clamp(28px, 4vw, 44px); margin: 0 0 18px; }
+    h3 { font-size: 24px; margin: 0 0 12px; }
+    p.lead { font-size: 18px; color: #E9E9E9; max-width: 720px; }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left:0; right:0; z-index: 1000; transition: all .35s ease;
+      background: transparent;
+    }
+    header.scrolled { backdrop-filter: saturate(140%) blur(12px); background: rgba(0,0,0,.45); border-bottom: 1px solid rgba(212,175,55,.25); }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding: 18px 0; }
+    .brand { display:flex; align-items:center; gap: 12px; text-decoration:none; color: var(--white); }
+    .brand-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--grad-gold); box-shadow: inset 0 0 10px rgba(255,255,255,.25), 0 4px 12px rgba(212,175,55,.25); }
+    .brand-name { font-weight:700; letter-spacing:.5px; }
+
+    nav ul { list-style:none; display:flex; gap: 28px; padding:0; margin:0; }
+    nav a { color:#EDEDED; text-decoration:none; font-weight:500; position:relative; }
+    nav a::after { content:""; position:absolute; left:0; bottom:-6px; width:0%; height:2px; background: var(--gold); transition: width .3s ease; }
+    nav a:hover::after { width:100%; }
+
+    .menu-toggle { display:none; width:42px; height:42px; border:1px solid rgba(255,255,255,.18); border-radius: 12px; background: rgba(255,255,255,.05); color: var(--white); }
+
+    @media (max-width: 980px){
+      nav ul { position: fixed; inset: 70px 16px auto 16px; background: rgba(15,15,15,.96); border:1px solid rgba(212,175,55,.25); border-radius: 20px; padding:22px; flex-direction:column; gap:16px; transform: translateY(-20px); opacity:0; pointer-events:none; transition: all .3s ease; }
+      nav ul.open { transform: translateY(0); opacity:1; pointer-events:auto; }
+      .menu-toggle { display:flex; align-items:center; justify-content:center; }
+    }
+
+    /* Floating Socials */
+    .floating-socials { position: fixed; right: 16px; top: 120px; z-index: 1100; display:flex; flex-direction:column; gap:10px; }
+    .floating-socials a { width:44px; height:44px; border-radius: 12px; display:grid; place-items:center; background: rgba(255,255,255,.06); border: 1px solid rgba(212,175,55,.25); backdrop-filter: var(--blur); color: var(--white); text-decoration:none; transition: transform .2s ease, box-shadow .2s ease; }
+    .floating-socials a:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,.35), inset 0 0 30px rgba(212,175,55,.15); }
+
+    /* Hero */
+    .hero { min-height: 100vh; display:grid; place-items:center; position: relative; }
+    .hero-canvas { position:absolute; inset:0; z-index:0; }
+    .hero-overlay { position:absolute; inset:0; background: radial-gradient(800px 400px at 70% 20%, rgba(212,175,55,.12), transparent 60%), linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0, .8)); z-index:1; }
+    .hero-content { z-index:2; text-align:center; padding-top: 60px; }
+    .hero h1 { background: var(--grad-gold); -webkit-background-clip:text; background-clip:text; color: transparent; text-shadow: 0 0 0 rgba(0,0,0,0); }
+    .cta-group { margin-top: 24px; display:flex; gap:14px; justify-content:center; flex-wrap: wrap; }
+
+    /* About */
+    .about { display:grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items:center; }
+    .about .media { position:relative; border-radius: var(--radius); overflow:hidden; min-height: 320px; background: url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat; box-shadow: var(--shadow); }
+    .about .media::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.7)); }
+    .badge-row { display:flex; gap:16px; flex-wrap:wrap; margin-top: 16px; }
+    .badge { padding:8px 12px; border:1px solid rgba(212,175,55,.35); border-radius: 999px; font-size: 12px; color: var(--muted); background: rgba(255,255,255,.03); }
+
+    @media (max-width: 980px){ .about { grid-template-columns: 1fr; } }
+
+    /* Services */
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 980px){ .services-grid { grid-template-columns: 1fr; } }
+    .service { background: rgba(255,255,255,.04); border: 1px solid rgba(212,175,55,.25); border-radius: var(--radius); padding: 22px; position:relative; overflow:hidden; transition: transform .25s ease, box-shadow .25s ease; }
+    .service:hover{ transform: translateY(-6px); box-shadow: 0 16px 30px rgba(0,0,0,.35); }
+    .icon { width: 44px; height: 44px; border-radius: 12px; display:grid; place-items:center; background: rgba(212,175,55,.1); border:1px solid rgba(212,175,55,.35); margin-bottom: 12px; }
+
+    /* Portfolio */
+    .filter-row { display:flex; gap:10px; flex-wrap: wrap; margin-bottom: 18px; }
+    .filter { padding:10px 16px; border-radius: 999px; border:1px solid rgba(212,175,55,.3); background: rgba(255,255,255,.03); color: var(--muted); cursor: pointer; }
+    .filter.active { background: var(--grad-gold); color: #121212; border-color: transparent; }
+
+    .masonry { column-count: 3; column-gap: 18px; }
+    .masonry-item { break-inside: avoid; margin-bottom: 18px; position: relative; border-radius: 18px; overflow:hidden; border:1px solid rgba(212,175,55,.25); box-shadow: var(--shadow); }
+    .masonry-item img{ width:100%; display:block; transition: transform .35s ease, filter .35s ease; filter: saturate(0.9) contrast(1.05) brightness(.95); }
+    .masonry-item:hover img{ transform: scale(1.05); filter: sepia(.3) hue-rotate(-10deg) saturate(1.2); }
+    .masonry-info{ position:absolute; inset:auto 0 0 0; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.75)); padding: 16px; display:flex; justify-content:space-between; align-items:end; }
+    .case-btn { font-size: 13px; text-decoration:none; color: #121212; background: var(--grad-gold); padding:8px 12px; border-radius: 999px; }
+
+    @media (max-width: 1100px){ .masonry { column-count: 2; } }
+    @media (max-width: 640px){ .masonry { column-count: 1; } }
+
+    /* Pricing Section */
+.pricing{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:22px; }
+.price{ background: rgba(255,255,255,.04); border:1px solid rgba(212,175,55,.25); border-radius: var(--radius); padding:24px; text-align:center; box-shadow: var(--shadow); transition: transform .25s ease; }
+.price:hover{ transform: translateY(-6px); }
+.price.featured{ border:1px solid var(--gold); box-shadow: 0 16px 40px rgba(212,175,55,.25); }
+.badge{ display:inline-block; padding:6px 12px; border-radius:999px; background:rgba(212,175,55,.1); border:1px solid var(--gold); color:var(--gold); font-size:12px; margin-bottom:10px; }
+.price h4{ margin:10px 0; font-size:20px; }
+.amount{ font-size:28px; font-weight:700; background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent; margin:10px 0 20px; }
+.price ul{ list-style:none; padding:0; margin:0 0 20px; color:#EAEAEA; }
+.price ul li{ margin:8px 0; }
+.btn{ display:inline-block; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:600; border:1px solid var(--gold); color:var(--gold); transition:.3s; }
+.btn:hover{ background:var(--gold); color:#151515; }
+
+    /* Testimonials */
+    .testimonials { position: relative; overflow: hidden; }
+    .slider { display:flex; gap: 22px; transition: transform .5s ease; }
+    .testimonial { min-width: calc(33.333% - 15px); background: rgba(255,255,255,.04); border:1px solid rgba(212,175,55,.25); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .t-name { font-weight:600; color: var(--gold); margin-top: 8px; }
+    .slider-controls { display:flex; gap: 10px; margin-top: 16px; }
+    .slider-btn { width:42px; height:42px; border-radius:12px; background: rgba(255,255,255,.06); border:1px solid rgba(212,175,55,.3); color: var(--white); display:grid; place-items:center; cursor:pointer; }
+    @media (max-width: 980px){ .testimonial { min-width: 100%; } }
+
+    /* Blog */
+    .blog { display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .post { border:1px solid rgba(212,175,55,.25); border-radius: var(--radius); overflow:hidden; background: rgba(255,255,255,.04); box-shadow: var(--shadow); }
+    .post .thumb { aspect-ratio: 16/9; background: #111; }
+    .post .body { padding: 18px; }
+    @media (max-width: 980px){ .blog { grid-template-columns: 1fr; } }
+
+    /* Contact */
+    form { display:grid; gap: 14px; }
+    .field { display:grid; gap:6px; }
+    label { font-size: 13px; color: var(--muted); }
+    input, textarea { background: rgba(255,255,255,.04); color: var(--white); border:1px solid rgba(212,175,55,.25); border-radius: 14px; padding:12px 14px; outline:none; }
+    input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.15); }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .contact-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+    @media (max-width: 980px){ .contact-grid { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer { padding: 22px 0 44px; border-top: 1px solid rgba(212,175,55,.2); background: #0A0A0A; color: #DADADA; }
+    .foot { display:flex; gap:22px; align-items:center; justify-content:space-between; flex-wrap: wrap; }
+
+    /* Floating CTA */
+    .floating-cta { position: fixed; right: 16px; bottom: 16px; z-index: 1200; }
+
+    /* Reveal Animations */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show { opacity:1; transform: none; }
+
+    /* Loader */
+    .loader { position: fixed; inset:0; background: radial-gradient(800px 400px at 50% 30%, rgba(212,175,55,.12), transparent 60%), #000; display:grid; place-items:center; z-index: 2000; transition: opacity .5s ease, visibility .5s ease; }
+    .loader.hidden { opacity:0; visibility:hidden; }
+    .logo-orb { width:120px; height:120px; border-radius: 50%; background: var(--grad-gold); filter: drop-shadow(0 20px 60px rgba(212,175,55,.35)); position: relative; }
+    .logo-orb::after { content:""; position:absolute; inset:6px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0) 45%), linear-gradient(145deg, rgba(255,255,255,.15), rgba(0,0,0,.15)); }
+    .loader h3 { margin-top: 18px; font-family: 'Playfair Display', serif; letter-spacing: .5px; }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div style="display:grid; place-items:center; text-align:center;">
+      <div class="logo-orb"></div>
+      <h3 style="background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent;">Uraan Studio</h3>
+    </div>
+  </div>
+
+  <!-- Floating Socials -->
+  <div class="floating-socials" aria-label="Social media links">
+    <a href="https://www.instagram.com/uraanstudioagency" target="_blank" title="Instagram" aria-label="Instagram" rel="noopener">
+      <!-- IG icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="1.2"/><path d="M16 12.37A3.63 3.63 0 1 1 12.37 8.74 3.63 3.63 0 0 1 16 12.37Z" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@uraan.studioagency31" target="_blank" title="TikTok" aria-label="TikTok" rel="noopener">
+      <!-- TikTok icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 3c1 2.4 2.6 3.9 5 4v3c-1.9 0-3.5-.6-5-1.7v6.7a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3V3h3Z" fill="currentColor"/></svg>
+    </a>
+    <a href="https://www.facebook.com/uraanstudioagency" target="_blank" title="Facebook" aria-label="Facebook" rel="noopener">
+      <!-- FB icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+    </a>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <<div class="container nav">
+      <a class="brand" href="#home" aria-label="Uraan Studio Home">
+        <div class="brand-mark"></div>
+        <div class="brand-name">Uraan Studio Agency</div>
+      </a>
+      <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+        <ul id="navList">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home" aria-label="Hero">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content reveal">
+      <h1>We Build Brands That Shine Like Gold.</h1>
+      <p class="lead">Premium creative solutions for businesses that demand excellence.</p>
+      <div class="cta-group">
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+        <a href="#portfolio" class="btn btn-ghost">View Our Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section class="section dark" id="about">
+    <div class="container about">
+      <div class="media" aria-hidden="true"></div>
+      <div class="reveal">
+        <h2>About Uraan Studio</h2>
+        <p class="lead">We are a luxury creative agency blending strategy, design and technology to craft magnetic brands, beautiful websites and content that converts. Our ethos is simple: elegance, clarity, and measurable impact.</p>
+        <div class="grid" style="grid-template-columns: repeat(2, 1fr); gap:14px; margin-top:18px;">
+          <div>
+            <h3>Mission</h3>
+            <p>Empower businesses with premium branding and digital experiences that amplify credibility and growth.</p>
+          </div>
+          <div>
+            <h3>Why Choose Us</h3>
+            <ul class="features">
+              <li>✓ Bespoke strategy-first approach</li>
+              <li>✓ World-class visuals & copy</li>
+              <li>✓ Fast, SEO-ready websites</li>
+              <li>✓ End-to-end content production</li>
+            </ul>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="badge">Certified Meta Ads</span>
+          <span class="badge">Top Rated Design</span>
+          <span class="badge">5★ Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section brown" id="services">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom: 26px;">
+        <h2>Our Services</h2>
+        <p class="lead">A luxury suite designed to scale your brand with precision and style.</p>
+      </div>
+      <div class="grid services-grid">
+        <div class="service reveal">
+          <div class="icon">🏷️</div>
+          <h3>Branding & Identity</h3>
+          <p>Logo systems, color palettes, typography, packaging, and brand guidelines that glow.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">💻</div>
+          <h3>Website Design & Development</h3>
+          <p>High-converting, responsive websites with elegant animations and SEO baked in.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">📱</div>
+          <h3>Social Media Management</h3>
+          <p>Content calendars, design, captions, and growth strategies across all major platforms.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">🎥</div>
+          <h3>Content Creation</h3>
+          <p>Photo/video production and editing with luxury-grade storytelling.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">🚀</div>
+          <h3>Digital Marketing & Ads</h3>
+          <p>Full-funnel paid growth: Meta, Google, TikTok — performance focused.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">🧠</div>
+          <h3>Creative Strategy & Consulting</h3>
+          <p>Positioning, messaging, and campaign ideas that differentiate your brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section dark" id="portfolio">
+    <div class="container">
+      <h2>Portfolio</h2>
+      <p class="lead">A showcase of our creative works and designs.</p>
+
+      <div class="masonry">
+        <div class="masonry-item"><img src="images/aqsa naturals.jpg" alt="Portfolio Image 1"></div>
+        <div class="masonry-item"><img src="images/riwaj.jpg" alt="Portfolio Image 2"></div>
+        <div class="masonry-item"><img src="images/IZa.jpg" alt="Portfolio Image 3"></div>
+        <div class="masonry-item"><img src="images/per.jpg" alt="Portfolio Image 4"></div>
+        <div class="masonry-item"><img src="images/perf.jpg" alt="Portfolio Image 5"></div>
+        <div class="masonry-item"><img src="images/perfum.jpg" alt="Portfolio Image 6"></div>
+        <div class="masonry-item"><img src="images/baggs.jpg" alt="Portfolio Image 7"></div>
+        <div class="masonry-item"><img src="images/wali.jpg" alt="Portfolio Image 8"></div>
+        <div class="masonry-item"><img src="images/jewel.jpg" alt="Portfolio Image 9"></div>
+        <div class="masonry-item"><img src="images/aqsa.jpg" alt="Portfolio Image 10"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing / Packages -->
+  <section id="pricing">
+    <div class="container">
+      <h3>Packages</h3>
+      <div class="grid pricing mt-4">
+        <div class="price">
+          <span class="badge tag">Starter</span>
+          <h4>Starter Plan</h4>
+          <div class="amount">PKR 15,000</div>
+          <ul>
+            <li>Social Media Management</li>
+            <li>Ads Management</li>
+            <li>Reels + Stories (basic)</li>
+          </ul>
+          <a class="btn" href="#contact">Choose Starter</a>
+        </div>
+        <div class="price featured">
+          <span class="badge tag">Popular</span>
+          <h4>Growth Plan</h4>
+          <div class="amount">PKR 25,000</div>
+          <ul>
+            <li>Social Media Management</li>
+            <li>Ads Management</li>
+            <li>Reels + Stories (advanced)</li>
+            <li>Content Calendar</li>
+          </ul>
+          <a class="btn" href="#contact">Choose Growth</a>
+        </div>
+        <div class="price">
+          <span class="badge tag">Premium</span>
+          <h4>Premium Plan</h4>
+          <div class="amount">PKR 50,000</div>
+          <ul>
+            <li>Everything in Growth</li>
+            <li>Full Content Creation (Video + Graphics + Strategy)</li>
+            <li>Influencer Marketing Support</li>
+          </ul>
+          <a class="btn" href="#contact">Choose Premium</a>
+        </div>
+        <div class="price">
+          <span class="badge tag">Custom</span>
+          <h4>Custom Plan</h4>
+          <div class="amount">Flexible</div>
+          <ul>
+            <li>Tailored scope to your goals</li>
+            <li>Timeline & channels of your choice</li>
+            <li>Enterprise support available</li>
+          </ul>
+          <a class="btn" href="#contact">Request Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Testimonials -->
+  <section class="section dark" id="testimonials">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom: 26px;">
+        <h2>Testimonials</h2>
+        <p class="lead">What our clients say about the experience.</p>
+      </div>
+
+      <div class="testimonials">
+        <div class="slider" id="slider">
+          <div class="testimonial">
+            <p>“Our brand finally looks as premium as our products. The packaging and social content are stunning.”</p>
+            <div class="t-name">Aqssa Naturals</div>
+          </div>
+          <div class="testimonial">
+            <p>“Professional, creative, and fast. The e‑commerce site boosted our sales within the first month.”</p>
+            <div class="t-name">Aizal Organics</div>
+          </div>
+          <div class="testimonial">
+            <p>“From strategy to execution, Uraan made everything feel easy — and the results speak for themselves.”</p>
+            <div class="t-name">Future Client</div>
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button class="slider-btn" id="prev">◀</button>
+          <button class="slider-btn" id="next">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog / Insights -->
+  <section class="section" id="blog">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom: 26px;">
+        <h2>Insights</h2>
+        <p class="lead">Branding tips, social trends, and marketing case studies.</p>
+      </div>
+      <div class="blog">
+        <article class="post reveal">
+          <div class="thumb" style="background:url('https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
+          <div class="body">
+            <h3>Luxury Branding: The Power of Restraint</h3>
+            <p>Why minimalism, materials, and consistency signal premium value.</p>
+            <a class="btn btn-ghost" href="#">Read</a>
+          </div>
+        </article>
+        <article class="post reveal">
+          <div class="thumb" style="background:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
+          <div class="body">
+            <h3>Instagram Reels that Actually Convert</h3>
+            <p>Creative frameworks and hooks for growth beyond vanity metrics.</p>
+            <a class="btn btn-ghost" href="#">Read</a>
+          </div>
+        </article>
+        <article class="post reveal">
+          <div class="thumb" style="background:url('https://images.unsplash.com/photo-1523246191161-4f1f2f1f1f1f?q=80&w=1400&auto=format&fit=crop') center/cover"></div>
+          <div class="body">
+            <h3>From Clicks to Clients: Landing Page Essentials</h3>
+            <p>Fast pages, clear value, and persuasive visuals for ROAS.</p>
+            <a class="btn btn-ghost" href="#">Read</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!--<!-- ================= Contact Us Section ================= -->
+<section id="contact" style="background:#000; color:#fff; padding:80px 20px; text-align:center;">
+
+  <div style="max-width:800px; margin:0 auto;">
+    <!-- Heading -->
+    <h2 style="font-size:36px; font-weight:bold; color:#D4AF37; margin-bottom:10px;">
+      Let’s Work Together
+    </h2>
+    <p style="font-size:18px; color:#ccc; margin-bottom:40px;">
+      Tell us about your project and we’ll get back to you shortly.
+    </p>
+
+    <!-- Contact Form -->
+    <form action="https://formspree.io/f/xwpnwbjp" method="POST" style="text-align:left; background:#111; padding:30px; border-radius:12px; box-shadow:0 0 20px rgba(212,175,55,0.2);">
+      
+      <!-- Name -->
+      <label style="display:block; margin-bottom:15px; color:#fff; font-size:16px;">
+        Your Name:
+        <input type="text" name="name" required 
+               style="width:100%; padding:12px; margin-top:8px; border:1px solid #333; border-radius:8px; background:#1a1a1a; color:#fff;">
+      </label>
+
+      <!-- Email -->
+      <label style="display:block; margin-bottom:15px; color:#fff; font-size:16px;">
+        Your Email:
+        <input type="email" name="email" required 
+               style="width:100%; padding:12px; margin-top:8px; border:1px solid #333; border-radius:8px; background:#1a1a1a; color:#fff;">
+      </label>
+
+      <!-- Message -->
+      <label style="display:block; margin-bottom:20px; color:#fff; font-size:16px;">
+        Your Message:
+        <textarea name="message" rows="5" required 
+                  style="width:100%; padding:12px; margin-top:8px; border:1px solid #333; border-radius:8px; background:#1a1a1a; color:#fff;"></textarea>
+      </label>
+
+      <!-- Button -->
+      <button type="submit" 
+              style="background:#D4AF37; color:#000; padding:14px 30px; border:none; border-radius:10px; font-weight:bold; font-size:16px; cursor:pointer; transition:0.3s;">
+        Send Message
+      </button>
+    </form>
+
+    <!-- Contact Details -->
+    <div style="margin-top:50px; color:#ccc; font-size:16px;">
+      <p><strong>Email:</strong> janiferhindsla@gmail.com</p>
+      <p><strong>Phone:</strong> +92 314 4268476</p>
+      <p><strong>Follow Us:</strong> 
+        <a href="https://www.instagram.com/uraanstudioagency" style="color:#D4AF37; text-decoration:none;">Instagram</a> | 
+        <a href="https://www.facebook.com/uraanstudioagency" style="color:#D4AF37; text-decoration:none;">Facebook</a> | 
+        <a href="https://www.tiktok.com/@uraan.studioagency31" style="color:#D4AF37; text-decoration:none;">TikTok</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer>
+   <div class="container nav">
+      <a class="brand" href="#home" aria-label="Uraan Studio Home">
+        <div class="brand-mark"></div>
+        <div class="brand-name">Uraan Studio Agency</div>
+      </a>
+      <nav style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#packages">Packages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div style="text-align:right;">
+        <div>© 2025 Uraan Studio Agency</div>
+        <div style="color:var(--muted); font-size: 13px;">Crafting Digital Masterpieces.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA -->
+  <div class="floating-cta">
+    <a href="#contact" class="btn btn-primary" aria-label="Work With Us">Work With Us</a>
+  </div>
+
+  <script>
+    // Header blur on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navList = document.getElementById('navList');
+    menuToggle.addEventListener('click', () => navList.classList.toggle('open'));
+    navList.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navList.classList.remove('open')));
+
+    // Reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+    }, { threshold: .1 });
+    reveals.forEach(el => io.observe(el));
+
+    // Portfolio filter
+    const filterButtons = document.querySelectorAll('.filter');
+    const items = document.querySelectorAll('.masonry-item');
+    filterButtons.forEach(btn => btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      items.forEach(it => {
+        const cats = it.dataset.cat.split(' ');
+        const show = f === 'all' || cats.includes(f);
+        it.style.display = show ? 'block' : 'none';
+      });
+    }));
+
+    // Testimonials slider
+    const slider = document.getElementById('slider');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let index = 0;
+    function updateSlider(){
+      const slides = slider.children.length;
+      const vw = window.innerWidth;
+      const perView = vw < 980 ? 1 : 3;
+      const maxIndex = Math.max(0, slides - perView);
+      index = Math.min(Math.max(index, 0), maxIndex);
+      const card = slider.querySelector('.testimonial');
+      const gap = 22; // same as CSS gap
+      const width = card.getBoundingClientRect().width + gap;
+      slider.style.transform = `translateX(${-index * width}px)`;
+    }
+    window.addEventListener('resize', updateSlider);
+    prev.addEventListener('click', ()=>{ index--; updateSlider(); });
+    next.addEventListener('click', ()=>{ index++; updateSlider(); });
+    updateSlider();
+
+    // Golden particle hero animation
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles;
+    function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    function initParticles(){
+      const count = Math.min(120, Math.floor((w*h)/18000));
+      particles = new Array(count).fill(0).map(()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.8 + .6,
+        a: Math.random()*Math.PI*2,
+        s: Math.random()*0.6 + 0.2
+      }));
+    }
+    initParticles();
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(const p of particles){
+        p.a += (p.s/40);
+        p.x += Math.cos(p.a) * p.s;
+        p.y += Math.sin(p.a) * p.s * 0.6;
+        if(p.x< -50) p.x=w+50; if(p.x>w+50) p.x=-50; if(p.y< -50) p.y=h+50; if(p.y>h+50) p.y=-50;
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*6);
+        grad.addColorStop(0, 'rgba(229,197,92,.9)');
+        grad.addColorStop(.6, 'rgba(212,175,55,.2)');
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r*6, 0, Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // Loader
+    window.addEventListener('load', ()=>{
+      setTimeout(()=> document.getElementById('loader').classList.add('hidden'), 700);
+      updateSlider();
+    });
+  </script>
+</body>
+</html>
+
+
